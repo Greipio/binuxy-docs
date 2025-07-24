@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "maple",
   "name": "Binuxy API Documentation",
   "colors": {
     "primary": "#A855F7",
@@ -37,8 +37,7 @@
             "group": "API Features",
             "pages": [
               "options/response-format",
-              "options/development-environment",
-              "options/vpn-proxy-detection"
+              "options/development-environment"
             ]
           }
         ]
