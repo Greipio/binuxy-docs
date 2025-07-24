@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Binuxy API Documentation",
   "colors": {
-    "primary": "#008CFF",
-    "light": "#008CFF",
-    "dark": "#008CFF"
+    "primary": "#A855F7",
+    "light": "#A855F7",
+    "dark": "#A855F7"
   },
   "contextual": {
     "options": ["chatgpt", "claude", "copy", "view"]
