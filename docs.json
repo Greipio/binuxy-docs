@@ -29,7 +29,8 @@
               "authentication",
               "https-support",
               "error-codes",
-              "usage-limits"
+              "usage-limits",
+              "changelog"
             ]
           },
           {
