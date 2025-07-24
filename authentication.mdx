@@ -1,0 +1,31 @@
+---
+title: "Authentication"
+sidebarTitle: "Authentication"
+description: "Authentication to Binuxy API made easy!"
+icon: "key"
+iconType: "duotone"
+---
+
+To access our API and take advantage of all the available methods, you will need to authenticate your requests using your unique API Key. This key is a secure authentication mechanism that ensures only authorized users can access the API.
+
+To obtain your API Key, simply navigate to your [account dashboard](https://dashboard.binuxy.com/home). Once you have your API Key, you can begin authenticating your requests.
+
+To authenticate your requests, append the key parameter to the request URL, along with your API Key. Here is an example of how to do this:
+
+Add your API Key to the key parameter just like this:
+
+```bash
+https://api.binuxy.com/lookup/bin?key=1234567890&bin=12345678
+```
+
+Or, you can use the API Key as a Bearer Token as follows:
+
+```bash cURL
+curl --request GET \
+  --url https://api.binuxy.com/lookup/bin?bin=12345678 \
+  --header 'Authorization: Bearer <api-key>'
+```
+
+## Securing your API Key
+
+For more information about how to secure your API Key, please refer to [Protecting your API Key]()

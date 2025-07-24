@@ -1,0 +1,305 @@
+---
+title: "BIN/IIN Lookup"
+description: "Utilize this module to effortlessly retrieve comprehensive information associated with a debit or credit card.\n\nThe API provides details such as card type (debit or credit), scheme (Visa, Mastercard, etc.), brand (gold, platinum, etc.), and bank information.\n\nThis data is invaluable for various applications, including payment processing, card validation, geographic analysis, and enhancing user experiences in financial applications.
+"
+api: "GET /lookup/bin"
+---
+
+### Overview
+
+The IIN (Issuer Identification Number), also known as the BIN (Bank Identification Number), is the first 6 digits of a debit or credit card number. These unique numbers are used to identify the issuing entity, such as the bank or financial institution that issued the card.
+
+This BIN lookup service is commonly used for payment processing validation, geographic analysis, card type identification, and enhancing checkout experiences. By understanding card details, businesses can optimize their payment flows, provide localized experiences, and make informed decisions about payment processing.
+
+For example, you can use this API to identify if a card is issued by a bank in a specific country, determine the card type (debit vs credit), or understand the card brand to customize the user experience accordingly. This information helps in payment routing, currency selection, and providing relevant payment options to users.
+
+### Query Parameters
+
+<ParamField
+  query="bin"
+  type="string"
+  placeholder="The BIN"
+  required
+>
+  The BIN/IIN of the card (min: 6 digits).
+
+Sample value: `456789`, `456789XXXXXX1234`, or `4567891234567890`.
+
+</ParamField>
+
+<ParamField
+  query="format"
+  type="string"
+  default="JSON"
+  placeholder="Response format"
+>
+  The format command is used to get a response in a specific format.
+
+Expected values: `JSON`, `XML`, or `CSV`.
+
+For more information please refer to [Response Format](/options/response-format).
+
+</ParamField>
+
+<ParamField
+  query="mode"
+  type="string"
+  default="live"
+  placeholder="Environment"
+>
+  The mode command is used to in the development stage to simulate the integration process before releasing it to the production environment.
+
+Expected values: `live`, or `test`.
+
+For more information please refer to [Development Environment](/options/development-environment).
+
+</ParamField>
+
+<ParamField
+  query="callback"
+  type="string"
+  placeholder="JSONP callback"
+>
+  The callback command can help you make the response as a JSONP format.
+
+Expected values: any name that can be used as a function name in Javascript, e.g: `myFunctionName`.
+
+For more information please refer to [JSONP Callback](/options/jsonp-callback).
+
+</ParamField>
+
+<ResponseExample>
+
+```json Success
+{
+  "data": {
+    "reason": "",
+    "isValid": true,
+    "blacklisted": false,
+    "bin": "456789",
+    "info": {
+      "scheme": {
+        "name": "Visa",
+        "coName": "Mada",
+        "isLuha": true,
+        "isPrepaid": false,
+        "isCommercial": false,
+        "type": "debit",
+        "brand": "Traditional",
+        "currency": "SAR"
+      },
+      "detected_digits": "4",
+      "syntax": {
+        "gaps": [4, 8, 12],
+        "lengths": [16, 18, 19],
+        "code": {
+          "name": "CVV",
+          "size": 3
+        }
+      },
+      "bank": {
+        "id": "588847",
+        "identifier": "80",
+        "name": "AL RAJHI BANKING AND INVESTMENT CORP.",
+        "city": "Riyadh",
+        "url": "https://www.alrajhibank.com.sa",
+        "phone": "+96611211600",
+        "logo": "https://binuxy.com/img/banks/al-rajhi.jpg",
+        "latitude": "25",
+        "longitude": "45"
+      },
+      "country": {
+        "alpha2": "SA",
+        "name": "Saudi Arabia",
+        "code": "966",
+        "numeric": "682",
+        "emoji": "🇸🇦",
+        "continent": "Asia",
+        "languageCode": "ar",
+        "languageNative": "العربية"
+      }
+    },
+    "custom_rules_applied": {
+      "total": 0,
+      "rules": []
+    }
+  },
+  "status": "success",
+  "executionTime": 2
+}
+```
+
+```json Error
+{
+  "status": "error",
+  "code": 101,
+  "type": "invalid_key",
+  "description": "The API Key is missing or invalid."
+}
+```
+
+</ResponseExample>
+
+### Response properties
+
+<ResponseField name="data" type="object" required>
+  <Expandable title="properties" defaultOpen={true}>
+    <ResponseField name="reason" type="string" required>
+      Reason for the validation result.
+    </ResponseField>
+    <ResponseField name="isValid" type="boolean" required>
+      Validation result (`true` or `false`).
+    </ResponseField>
+    <ResponseField name="blacklisted" type="boolean" required>
+      Indicates if the BIN is blacklisted due to applying [custom
+      rules](/knowledge-base/custom-rules/overview) or were found in one of your
+      blacklists.
+    </ResponseField>
+    <ResponseField name="bin" type="string" required>
+      The BIN/IIN of the card you passed in the request.
+    </ResponseField>
+    <ResponseField name="info" type="object" required>
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="scheme" type="object" required>
+          <Expandable title="properties" defaultOpen={true}>
+            <ResponseField name="name" type="object" required>
+              Card scheme name.
+            </ResponseField>
+            <ResponseField name="coName" type="object" required>
+              Card company name.
+            </ResponseField>
+            <ResponseField name="isLuha" type="boolean" required>
+              Is the card issued by Luha?
+            </ResponseField>
+            <ResponseField name="isPrepaid" type="boolean" required>
+              Is the card prepaid?
+            </ResponseField>
+            <ResponseField name="isCommercial" type="boolean" required>
+              Is the card commercial?
+            </ResponseField>
+            <ResponseField name="type" type="string" required>
+              Card type (`debit`, or `credit`).
+            </ResponseField>
+            <ResponseField name="brand" type="string" required>
+              Card brand (`Traditional`, `Gold`, `Platinum`, etc.).
+            </ResponseField>
+            <ResponseField name="currency" type="string" required>
+              Card currency.
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+        <ResponseField name="detected_digits" type="string" required>
+          The digits used to detect the scheme details.
+        </ResponseField>
+        <ResponseField name="syntax" type="object" required>
+          <Expandable title="properties" defaultOpen={true}>
+            <ResponseField name="gaps" type="array" required>
+              The gaps variations of the card number.
+            </ResponseField>
+            <ResponseField name="lengths" type="array" required>
+              The possible lengths of the card number.
+            </ResponseField>
+            <ResponseField name="code" type="object" required>
+              <Expandable title="properties" defaultOpen={true}>
+                <ResponseField name="name" type="string" required>
+                  The name of the code (e.g: CVV).
+                </ResponseField>
+                <ResponseField name="size" type="integer" required>
+                  The number of digits in the code.
+                </ResponseField>
+              </Expandable>
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+        <ResponseField name="bank" type="object" required>
+          <Expandable title="properties" defaultOpen={true}>
+            <ResponseField name="id" type="string" required>
+              Bank ID.
+            </ResponseField>
+            <ResponseField name="identifier" type="string" required>
+              Bank identifier.
+            </ResponseField>
+            <ResponseField name="name" type="string" required>
+              The official bank name.
+            </ResponseField>
+            <ResponseField name="city" type="string" required>
+              The city where the bank's headquarters are located.
+            </ResponseField>
+            <ResponseField name="url" type="string" required>
+              Bank URL of the official website.
+            </ResponseField>
+            <ResponseField name="phone" type="string" required>
+              Bank phone number for contact.
+            </ResponseField>
+            <ResponseField name="logo" type="string" required>
+              Bank logo URL (image).
+            </ResponseField>
+            <ResponseField name="latitude" type="string" required>
+              Bank latitude coordinates of the country where the bank is
+              located.
+            </ResponseField>
+            <ResponseField name="longitude" type="string" required>
+              Bank longitude coordinates of the country where the bank is
+              located.
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+        <ResponseField name="country" type="object" required>
+          <Expandable title="properties" defaultOpen={true}>
+            <ResponseField name="alpha2" type="string" required>
+              Country code (in ISO 3166-1 alpha-2 format).
+            </ResponseField>
+            <ResponseField name="name" type="string" required>
+              The Country name.
+            </ResponseField>
+            <ResponseField name="code" type="string" required>
+              Country dialing code.
+            </ResponseField>
+            <ResponseField name="numeric" type="string" required>
+              Country numeric code.
+            </ResponseField>
+            <ResponseField name="emoji" type="string" required>
+              Country flag emoji.
+            </ResponseField>
+            <ResponseField name="continent" type="string" required>
+              Continent where the country is located.
+            </ResponseField>
+            <ResponseField name="languageCode" type="string" required>
+              Country language code (in ISO 639-1 format).
+            </ResponseField>
+            <ResponseField name="languageNative" type="string" required>
+              Country native language name.
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="custom_rules_applied" type="object">
+      The custom rules applied to this request, [learn
+      more](/knowledge-base/custom-rules/overview).
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="total" type="integer" required>
+          The total number of custom rules applied to this request.
+        </ResponseField>
+        <ResponseField name="rules" type="object" required>
+          The custom rules applied to this request, [learn
+          more](/knowledge-base/custom-rules/overview).
+          <Expandable title="properties" defaultOpen={true}>
+            <ResponseField name="id" type="string" required>
+              The rule ID as shown in the dashboard (e.g: `CR104`).
+            </ResponseField>
+            <ResponseField name="title" type="string" required>
+              The rule title you set when creating the rule.
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+<ResponseField name="status" type="string" required>
+  Response status (`success`, or `error`).
+</ResponseField>
+<ResponseField name="executionTime" type="integer" required>
+  Time taken to process the data (in milliseconds).
+</ResponseField>

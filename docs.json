@@ -1,68 +1,59 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Binuxy API Documentation",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#008CFF",
+    "light": "#008CFF",
+    "dark": "#008CFF"
   },
-  "favicon": "/favicon.svg",
+  "contextual": {
+    "options": ["chatgpt", "claude", "copy", "view"]
+  },
+  "banner": {
+    "content": "🚀 Binuxy's API achieved **99.98%** uptime for the last 90 days, [learn more](https://status.binuxy.com/).",
+    "dismissible": true
+  },
+  "favicon": "/favicon-1.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Get Started",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "introduction",
+              "about-binuxy",
+              "api-policy",
+              "authentication",
+              "https-support",
+              "error-codes",
+              "usage-limits"
             ]
           },
           {
-            "group": "Customization",
+            "group": "API Features",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "options/response-format",
+              "options/development-environment",
+              "options/vpn-proxy-detection"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "API Reference",
+        "pages": ["api-reference/endpoint/bin", "api-reference/endpoint/delete"]
+      },
+      {
+        "tab": "Packages & Libraries",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Packages & Libraries",
             "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "packages-and-libraries/list-of-packages-and-libraries",
+              "packages-and-libraries/other-resources"
             ]
           }
         ]
@@ -71,19 +62,14 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Server Status",
+          "href": "https://status.binuxy.com",
+          "icon": "signal-bars"
         },
         {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "FAQ",
+          "href": "https://binuxy.com/faq",
+          "icon": "circle-question"
         }
       ]
     }
@@ -92,24 +78,37 @@
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+  "api": {
+    "openapi": "https://greip.io/OpenAPI.json",
+    "playground": {
+      "display": "interactive"
+    },
+    "mdx": {
+      "server": "https://api.binuxy.com",
+      "auth": {
+        "method": "bearer"
       }
-    ],
+    }
+  },
+  "appearance": {
+    "default": "dark"
+  },
+  "background": {
+    "image": "/images/background-light.png"
+  },
+  "navbar": {
+    "links": [],
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "href": "https://dashboard.binuxy.com/home"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "linkedin": "https://www.linkedin.com/company/binuxy",
+      "website": "https://binuxy.com"
     }
-  }
+  },
+  "redirects": []
 }

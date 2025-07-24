@@ -1,0 +1,44 @@
+---
+title: "Error Codes"
+sidebarTitle: "Error Codes"
+description: "List of any error you might get while using Binuxy API"
+icon: "bug"
+iconType: "duotone"
+---
+
+Although we strive to provide a seamless and reliable experience, sometimes things can go wrong. In the event of an error, our API provides an error response that contains helpful information to assist you in resolving the issue.
+
+The error response includes the `status`, `code`, `type`, and `description` of the error. The status indicates the general category of the error, while the `code` and `type` provide more specific information about the error.
+
+The `description` property provides a detailed explanation of the error and may include suggestions for resolving the issue.
+
+Here is an example of an error response:
+
+```json
+{
+  "status": "error",
+  "code": 101,
+  "type": "invalid_key",
+  "description": "The API Key is missing or invalid."
+}
+```
+
+## Error codes
+
+| Code | Type                     | Description                                                                                                                    |
+| ---- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| 101  | `invalid_key`            | The API Key is missing or invalid.                                                                                             |
+| 102  | `inactive_user`          | The API Key owner (the account) is inactive right now. Please contact the support team for more information.                   |
+| 103  | `limit_reached`          | You reached the usage limit of your account. Please upgrade your subscription or pay any unpaid invoices.                      |
+| 104  | `invalid_params`         | Please check out the parms parameter's value.                                                                                  |
+| 105  | `plan_expired`           | Your plan has expired. Renew the subscription to enable using the API.                                                         |
+| 106  | `flood_detected`         | Our system has detected too many requests at the same time. Kindly please try to slow down.                                    |
+| 108  | `invalid_format`         | The value of the format parameter is not a valid format. Use `JSON`, or `XML`.                                                 |
+| 111  | `invalid_mode`           | The value of the mode parameter is not a valid format. Use test or live.                                                       |
+| 113  | `domain_not_whitelisted` | You are sending the request from a domain that is not the domain name you set in the API settings of your account's dashboard. |
+| 115  | `generic_error`          | An error occurred while processing your request. Please try again later.                                                       |
+| 117  | `feature_not_available`  | This feature is not available for your plan, please upgrade your plan first.                                                   |
+| 120  | `invalid_bin_number`     | The BIN number is invalid or missing.                                                                                          |
+| 124  | `invalid_user_type`      | The user type is invalid or missing. Use `email`, `phone` or `user_id`.                                                        |
+| 125  | `invalid_user_value`     | The user value is invalid or missing (`value` parameter).                                                                      |
+| 126  | `too_many_deletions`     | You have reached the limit of deletions for this day. Please wait until the next day to delete more user data.                 |
