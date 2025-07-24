@@ -10,10 +10,6 @@
   "contextual": {
     "options": ["chatgpt", "claude", "copy", "view"]
   },
-  "banner": {
-    "content": "🚀 Binuxy's API achieved **99.98%** uptime for the last 90 days, [learn more](https://status.binuxy.com/).",
-    "dismissible": true
-  },
   "favicon": "/favicon-1.svg",
   "navigation": {
     "tabs": [
