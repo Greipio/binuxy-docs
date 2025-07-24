@@ -59,7 +59,7 @@
       "anchors": [
         {
           "anchor": "Server Status",
-          "href": "https://status.binuxy.com",
+          "href": "https://binuxy.openstatus.dev/",
           "icon": "signal-bars"
         },
         {
