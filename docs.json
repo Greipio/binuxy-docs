@@ -75,7 +75,7 @@
     "dark": "/logo/dark.svg"
   },
   "api": {
-    "openapi": "https://greip.io/openapi.json",
+    "openapi": "https://greip.io/OpenAPI.json",
     "playground": {
       "display": "interactive"
     },
