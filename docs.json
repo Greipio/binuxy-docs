@@ -35,12 +35,12 @@
               "options/response-format",
               "options/development-environment"
             ]
+          },
+          {
+            "group": "API Endpoints",
+            "pages": ["api-reference/endpoint/bin"]
           }
         ]
-      },
-      {
-        "tab": "API Reference",
-        "pages": ["api-reference/endpoint/bin", "api-reference/endpoint/delete"]
       },
       {
         "tab": "Packages & Libraries",
@@ -75,7 +75,7 @@
     "dark": "/logo/dark.svg"
   },
   "api": {
-    "openapi": "https://greip.io/OpenAPI.json",
+    "openapi": "https://greip.io/openapi.json",
     "playground": {
       "display": "interactive"
     },
